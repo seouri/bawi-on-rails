@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  group_id: 1
+  name: MyString
+  max_article_no: 1
+  max_comment_no: 1
+  articles_count: 1
+
+two:
+  group_id: 1
+  name: MyString
+  max_article_no: 1
+  max_comment_no: 1
+  articles_count: 1

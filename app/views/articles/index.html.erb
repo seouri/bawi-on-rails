@@ -1,0 +1,35 @@
+<h1>Listing articles</h1>
+
+<table>
+  <tr>
+    <th>Board</th>
+    <th>Article no</th>
+    <th>Parent no</th>
+    <th>Thread no</th>
+    <th>Name</th>
+    <th>Hits count</th>
+    <th>Comments count</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @articles.each do |article| %>
+  <tr>
+    <td><%= article.board_id %></td>
+    <td><%= article.article_no %></td>
+    <td><%= article.parent_no %></td>
+    <td><%= article.thread_no %></td>
+    <td><%= article.name %></td>
+    <td><%= article.hits_count %></td>
+    <td><%= article.comments_count %></td>
+    <td><%= link_to 'Show', article %></td>
+    <td><%= link_to 'Edit', edit_article_path(article) %></td>
+    <td><%= link_to 'Destroy', article, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Article', new_article_path %>

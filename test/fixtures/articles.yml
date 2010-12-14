@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  board_id: 1
+  article_no: 1
+  parent_no: 1
+  thread_no: 1
+  name: MyString
+  hits_count: 1
+  comments_count: 1
+
+two:
+  board_id: 1
+  article_no: 1
+  parent_no: 1
+  thread_no: 1
+  name: MyString
+  hits_count: 1
+  comments_count: 1

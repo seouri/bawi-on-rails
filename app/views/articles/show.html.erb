@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Board:</b>
+  <%= @article.board_id %>
+</p>
+
+<p>
+  <b>Article no:</b>
+  <%= @article.article_no %>
+</p>
+
+<p>
+  <b>Parent no:</b>
+  <%= @article.parent_no %>
+</p>
+
+<p>
+  <b>Thread no:</b>
+  <%= @article.thread_no %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%= @article.name %>
+</p>
+
+<p>
+  <b>Hits count:</b>
+  <%= @article.hits_count %>
+</p>
+
+<p>
+  <b>Comments count:</b>
+  <%= @article.comments_count %>
+</p>
+
+
+<%= link_to 'Edit', edit_article_path(@article) %> |
+<%= link_to 'Back', articles_path %>

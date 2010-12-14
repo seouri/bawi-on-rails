@@ -10,7 +10,56 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101214085230) do
+ActiveRecord::Schema.define(:version => 20101214232059) do
+
+  create_table "articles", :force => true do |t|
+    t.integer  "board_id"
+    t.integer  "article_no"
+    t.integer  "parent_no"
+    t.integer  "thread_no"
+    t.string   "name"
+    t.integer  "hits_count"
+    t.integer  "comments_count"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "articles", ["board_id", "article_no"], :name => "index_articles_on_board_id_and_article_no", :unique => true
+  add_index "articles", ["board_id", "thread_no"], :name => "index_articles_on_board_id_and_thread_no"
+
+  create_table "boards", :force => true do |t|
+    t.integer  "group_id"
+    t.string   "name"
+    t.integer  "max_article_no", :default => 0
+    t.integer  "max_comment_no", :default => 0
+    t.integer  "articles_count", :default => 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "boards", ["group_id"], :name => "index_boards_on_group_id"
+
+  create_table "comments", :force => true do |t|
+    t.integer  "board_id"
+    t.integer  "article_id"
+    t.integer  "comment_no"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "comments", ["board_id", "article_id"], :name => "index_comments_on_board_id_and_article_id"
+  add_index "comments", ["board_id", "comment_no"], :name => "index_comments_on_board_id_and_comment_no", :unique => true
+
+  create_table "groups", :force => true do |t|
+    t.integer  "parent_id"
+    t.string   "name"
+    t.integer  "boards_count", :default => 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "groups", ["parent_id"], :name => "index_groups_on_parent_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                               :default => "", :null => false
