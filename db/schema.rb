@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(:version => 20101214232059) do
     t.integer  "group_id"
     t.integer  "owner_id"
     t.string   "name"
+    t.string   "keyword"
     t.integer  "max_article_no", :default => 0
     t.integer  "max_comment_no", :default => 0
     t.integer  "articles_count", :default => 0
@@ -42,6 +43,7 @@ ActiveRecord::Schema.define(:version => 20101214232059) do
   end
 
   add_index "boards", ["group_id"], :name => "index_boards_on_group_id"
+  add_index "boards", ["keyword"], :name => "index_boards_on_keyword", :unique => true
   add_index "boards", ["owner_id"], :name => "index_boards_on_owner_id"
 
   create_table "comments", :force => true do |t|
@@ -62,11 +64,13 @@ ActiveRecord::Schema.define(:version => 20101214232059) do
     t.integer  "parent_id"
     t.integer  "owner_id"
     t.string   "name"
+    t.string   "keyword"
     t.integer  "boards_count", :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "groups", ["keyword"], :name => "index_groups_on_keyword", :unique => true
   add_index "groups", ["owner_id"], :name => "index_groups_on_owner_id"
   add_index "groups", ["parent_id"], :name => "index_groups_on_parent_id"
 
