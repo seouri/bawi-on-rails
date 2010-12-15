@@ -6,7 +6,8 @@ class CreateArticles < ActiveRecord::Migration
       t.integer :article_no
       t.integer :parent_no
       t.integer :thread_no
-      t.string :name
+      t.string :title
+      t.text :body
       t.integer :hits_count
       t.integer :comments_count
 

@@ -18,6 +18,7 @@ class BoardsControllerTest < ActionController::TestCase
 
   test "should create board" do
     assert_difference('Board.count') do
+      delete :destroy, :id => @board.to_param
       post :create, :board => @board.attributes
     end
 

@@ -21,7 +21,7 @@ class ArticlesControllerTest < ActionController::TestCase
       post :create, :article => @article.attributes
     end
 
-    assert_redirected_to article_path(assigns(:article))
+    assert_redirected_to board_article_path(@article.board_id, assigns(:article))
   end
 
   test "should show article" do
@@ -36,7 +36,7 @@ class ArticlesControllerTest < ActionController::TestCase
 
   test "should update article" do
     put :update, :id => @article.to_param, :article => @article.attributes
-    assert_redirected_to article_path(assigns(:article))
+    assert_redirected_to board_article_path(@article.board_id, assigns(:article))
   end
 
   test "should destroy article" do
@@ -44,6 +44,6 @@ class ArticlesControllerTest < ActionController::TestCase
       delete :destroy, :id => @article.to_param
     end
 
-    assert_redirected_to articles_path
+    assert_redirected_to board_articles_path(@article.board_id)
   end
 end

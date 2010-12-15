@@ -1,27 +1,13 @@
-<h1>Listing boards</h1>
+<h1>Boards</h1>
 
 <table>
   <tr>
-    <th>Group</th>
     <th>Name</th>
-    <th>Max article no</th>
-    <th>Max comment no</th>
-    <th>Articles count</th>
-    <th></th>
-    <th></th>
-    <th></th>
   </tr>
 
 <% @boards.each do |board| %>
   <tr>
-    <td><%= board.group_id %></td>
-    <td><%= board.name %></td>
-    <td><%= board.max_article_no %></td>
-    <td><%= board.max_comment_no %></td>
-    <td><%= board.articles_count %></td>
-    <td><%= link_to 'Show', board %></td>
-    <td><%= link_to 'Edit', edit_board_path(board) %></td>
-    <td><%= link_to 'Destroy', board, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to board.name, board %></td>
   </tr>
 <% end %>
 </table>

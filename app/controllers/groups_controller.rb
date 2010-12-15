@@ -1,4 +1,6 @@
 class GroupsController < ApplicationController
+  before_filter :authenticate_user!
+
   # GET /groups
   # GET /groups.xml
   def index
@@ -24,7 +26,7 @@ class GroupsController < ApplicationController
   # GET /groups/new
   # GET /groups/new.xml
   def new
-    @group = Group.new
+    @group = current_user.groups.new(:parent_id => params[:parent_id])
 
     respond_to do |format|
       format.html # new.html.erb

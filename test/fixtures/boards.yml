@@ -2,14 +2,12 @@
 
 one:
   group_id: 1
-  name: MyString
-  max_article_no: 1
-  max_comment_no: 1
-  articles_count: 1
+  name: Board1
+  keyword: board1
+  user_id: 1
 
 two:
-  group_id: 1
-  name: MyString
-  max_article_no: 1
-  max_comment_no: 1
-  articles_count: 1
+  group_id: 2
+  name: Board2
+  keyword: board2
+  user_id: 1

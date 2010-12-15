@@ -1,4 +1,6 @@
 <%= form_for(@group) do |f| %>
+  <%= f.hidden_field :user_id %>
+  <%= f.hidden_field :parent_id %>
   <% if @group.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@group.errors.count, "error") %> prohibited this group from being saved:</h2>
@@ -12,12 +14,12 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :parent_id %><br />
-    <%= f.text_field :parent_id %>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
+    <%= f.label :keyword %><br />
+    <%= f.text_field :keyword %>
   </div>
   <div class="actions">
     <%= f.submit %>

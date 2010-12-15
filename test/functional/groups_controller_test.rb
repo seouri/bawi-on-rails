@@ -16,14 +16,6 @@ class GroupsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should create group" do
-    assert_difference('Group.count') do
-      post :create, :group => @group.attributes
-    end
-
-    assert_redirected_to group_path(assigns(:group))
-  end
-
   test "should show group" do
     get :show, :id => @group.to_param
     assert_response :success
@@ -45,5 +37,14 @@ class GroupsControllerTest < ActionController::TestCase
     end
 
     assert_redirected_to groups_path
+  end
+
+  test "should create group" do
+    assert_difference('Group.count', 0) do
+      delete :destroy, :id => @group.to_param
+      post :create, :group => @group.attributes
+    end
+
+    assert_redirected_to group_path(assigns(:group))
   end
 end

@@ -1,9 +1,12 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  parent_id: 1
-  title: MyString
+  name: Group1
+  keyword: group1
+  user_id: 1
 
 two:
   parent_id: 1
-  title: MyString
+  name: Group2
+  keyword: group2
+  user_id: 1
