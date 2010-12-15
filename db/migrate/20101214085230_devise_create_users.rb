@@ -10,7 +10,10 @@ class DeviseCreateUsers < ActiveRecord::Migration
       # t.lockable :lock_strategy => :failed_attempts, :unlock_strategy => :both
       # t.token_authenticatable
 
-
+      t.integer :groups_count, :default => 0
+      t.integer :boards_count, :default => 0
+      t.integer :articles_count, :default => 0
+      t.integer :comments_count, :default => 0
       t.timestamps
     end
 

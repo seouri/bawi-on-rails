@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(:version => 20101214232059) do
     t.integer  "max_article_no", :default => 0
     t.integer  "max_comment_no", :default => 0
     t.integer  "articles_count", :default => 0
+    t.integer  "comments_count", :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -81,6 +82,10 @@ ActiveRecord::Schema.define(:version => 20101214232059) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.integer  "groups_count",                        :default => 0
+    t.integer  "boards_count",                        :default => 0
+    t.integer  "articles_count",                      :default => 0
+    t.integer  "comments_count",                      :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end

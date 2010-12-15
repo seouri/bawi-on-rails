@@ -7,6 +7,7 @@ class CreateBoards < ActiveRecord::Migration
       t.integer :max_article_no, :default => 0
       t.integer :max_comment_no, :default => 0
       t.integer :articles_count, :default => 0
+      t.integer :comments_count, :default => 0
 
       t.timestamps
     end
