@@ -14,6 +14,7 @@ ActiveRecord::Schema.define(:version => 20101214232059) do
 
   create_table "articles", :force => true do |t|
     t.integer  "board_id"
+    t.integer  "owner_id"
     t.integer  "article_no"
     t.integer  "parent_no"
     t.integer  "thread_no"
@@ -26,9 +27,11 @@ ActiveRecord::Schema.define(:version => 20101214232059) do
 
   add_index "articles", ["board_id", "article_no"], :name => "index_articles_on_board_id_and_article_no", :unique => true
   add_index "articles", ["board_id", "thread_no"], :name => "index_articles_on_board_id_and_thread_no"
+  add_index "articles", ["owner_id"], :name => "index_articles_on_owner_id"
 
   create_table "boards", :force => true do |t|
     t.integer  "group_id"
+    t.integer  "owner_id"
     t.string   "name"
     t.integer  "max_article_no", :default => 0
     t.integer  "max_comment_no", :default => 0
@@ -38,9 +41,11 @@ ActiveRecord::Schema.define(:version => 20101214232059) do
   end
 
   add_index "boards", ["group_id"], :name => "index_boards_on_group_id"
+  add_index "boards", ["owner_id"], :name => "index_boards_on_owner_id"
 
   create_table "comments", :force => true do |t|
     t.integer  "board_id"
+    t.integer  "owner_id"
     t.integer  "article_id"
     t.integer  "comment_no"
     t.text     "body"
@@ -50,15 +55,18 @@ ActiveRecord::Schema.define(:version => 20101214232059) do
 
   add_index "comments", ["board_id", "article_id"], :name => "index_comments_on_board_id_and_article_id"
   add_index "comments", ["board_id", "comment_no"], :name => "index_comments_on_board_id_and_comment_no", :unique => true
+  add_index "comments", ["owner_id"], :name => "index_comments_on_owner_id"
 
   create_table "groups", :force => true do |t|
     t.integer  "parent_id"
+    t.integer  "owner_id"
     t.string   "name"
     t.integer  "boards_count", :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "groups", ["owner_id"], :name => "index_groups_on_owner_id"
   add_index "groups", ["parent_id"], :name => "index_groups_on_parent_id"
 
   create_table "users", :force => true do |t|

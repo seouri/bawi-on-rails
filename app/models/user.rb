@@ -1,4 +1,9 @@
 class User < ActiveRecord::Base
+  has_many :groups
+  has_many :boards
+  has_many :articles
+  has_many :comments
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable
   devise :database_authenticatable, :registerable,
