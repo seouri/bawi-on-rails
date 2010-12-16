@@ -66,7 +66,8 @@ ActiveRecord::Schema.define(:version => 20101214232059) do
     t.integer  "user_id"
     t.string   "name"
     t.string   "keyword"
-    t.integer  "boards_count", :default => 0
+    t.integer  "children_count", :default => 0
+    t.integer  "boards_count",   :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end

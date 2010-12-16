@@ -5,6 +5,7 @@ class CreateGroups < ActiveRecord::Migration
       t.integer :user_id
       t.string :name
       t.string :keyword
+      t.integer :children_count, :default => 0
       t.integer :boards_count, :default => 0
       t.timestamps
     end
