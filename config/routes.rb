@@ -5,5 +5,5 @@ BawiOnRails::Application.routes.draw do
   end
   devise_for :users
   resources :users
-  root :to => "users#index"
+  root :to => "groups#index"
 end
