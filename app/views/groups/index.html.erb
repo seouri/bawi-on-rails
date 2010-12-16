@@ -1,17 +1,5 @@
 <h1>Groups</h1>
 
-<table>
-  <tr>
-    <th>Name</th>
-  </tr>
-
-<% @groups.each do |group| %>
-  <tr>
-    <td><%= link_to(group.name, group) %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
+<%= groups(@groups)%>
 
 <%= link_to 'New Group', new_group_path, :class => "button" %>
