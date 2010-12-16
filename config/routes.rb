@@ -1,5 +1,7 @@
 BawiOnRails::Application.routes.draw do
-  resources :groups
+  resources :groups do
+    resources :boards
+  end
   resources :boards do
     resources :articles
   end

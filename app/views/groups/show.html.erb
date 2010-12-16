@@ -5,3 +5,4 @@
 <%= link_to 'New Group', new_group_path(:parent_id => @group.id), :class => "button" %>
 <%= link_to 'Edit', edit_group_path(@group), :class => "button" %>
 <%= link_to 'Groups', groups_path, :class => "button" %>
+<%= link_to 'New Board', new_group_board_path(@group) %>

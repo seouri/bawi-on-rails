@@ -1,4 +1,5 @@
 <%= form_for(@board) do |f| %>
+  <%= f.hidden_field :group_id %>
   <% if @board.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@board.errors.count, "error") %> prohibited this board from being saved:</h2>
@@ -11,10 +12,6 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :group_id %><br />
-    <%= f.text_field :group_id %>
-  </div>
   <div class="field">
     <%= f.label :name %><br />
     <%= f.text_field :name %>

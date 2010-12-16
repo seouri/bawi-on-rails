@@ -24,7 +24,8 @@ class BoardsController < ApplicationController
   # GET /boards/new
   # GET /boards/new.xml
   def new
-    @board = Board.new
+    group = Group.find(params[:group_id])
+    @board = group.boards.new
 
     respond_to do |format|
       format.html # new.html.erb
