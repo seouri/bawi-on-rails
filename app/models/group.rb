@@ -11,4 +11,6 @@ class Group < ActiveRecord::Base
   validates_format_of :keyword, :with => /^[-_a-z0-9]+$/
 
   has_friendly_id :keyword
+
+  scope :root, where(:parent_id => nil).order("name")
 end
