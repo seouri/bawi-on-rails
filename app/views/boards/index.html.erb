@@ -1,17 +1,7 @@
 <h1>Boards</h1>
 
-<table>
-  <tr>
-    <th>Name</th>
-  </tr>
-
+<ul>
 <% @boards.each do |board| %>
-  <tr>
-    <td><%= link_to board.name, board %></td>
-  </tr>
+  <li><%= link_to board.group.name, board.group %>: <%= link_to board.name, board %></li>
 <% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Board', new_board_path %>
+</ul>
