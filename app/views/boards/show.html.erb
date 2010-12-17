@@ -1,3 +1,6 @@
 <h1><%= @board.name %></h1>
-<%= link_to 'Edit', edit_board_path(@board), :class => "button" %>
-<%= link_to 'Back', group_boards_path(@board.group), :class => "button" %>
+
+<ul class="buttons">
+  <li><%= link_to 'Edit', edit_board_path(@board), :class => "button" %></li>
+  <li><%= link_to 'Back', group_boards_path(@board.group), :class => "button" %></li>
+</ul>
