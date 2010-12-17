@@ -10,4 +10,9 @@ class Board < ActiveRecord::Base
   validates_format_of :keyword, :with => /^[-_a-z0-9]+$/
 
   has_friendly_id :keyword
+
+  def update_max_article_no
+    self.max_article_no = Article.maximum(:article_no, :conditions => "board_id = #{self.id}")
+    self.save
+  end
 end

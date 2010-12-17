@@ -14,4 +14,10 @@ class Group < ActiveRecord::Base
   has_friendly_id :keyword
 
   scope :root, where(:parent_id => nil).order("name")
+
+  def ancestors
+    ancestor = []
+    ancestor.push(self.parent, self.parent.ancestors) unless self.parent.nil?
+    ancestor.reverse.flatten
+  end
 end

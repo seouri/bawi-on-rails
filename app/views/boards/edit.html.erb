@@ -1,6 +1,10 @@
+<%= path(@board.group) %>
+
 <h1>Editing board</h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @board %> |
-<%= link_to 'Back', boards_path %>
+<ul class="buttons">
+  <li><%= link_to 'Cancel', @board, :class => "button" %></li>
+  <li><%= link_to 'Boards', group_boards_path(@board.group), :class => "button" %></li>
+</ul>

@@ -1,4 +1,5 @@
 class ArticlesController < ApplicationController
+  before_filter :set_board
   # GET /articles
   # GET /articles.xml
   def index
@@ -14,6 +15,7 @@ class ArticlesController < ApplicationController
   # GET /articles/1.xml
   def show
     @article = Article.find(params[:id])
+    @article.increment!(:hits_count) unless @article.user_id == current_user.id
 
     respond_to do |format|
       format.html # show.html.erb
@@ -40,11 +42,18 @@ class ArticlesController < ApplicationController
   # POST /articles
   # POST /articles.xml
   def create
-    @article = Article.new(params[:article])
+    parent_article = Article.find(params[:article_id]) if params[:article_id].present?
+    @article = @board.articles.new(params[:article])
+    @article.user_id = current_user
+    @article.article_no = @board.max_article_no + 1
+    if parent_article
+      @article.parent_no = parent_article.article_no
+      @article.thread_no = parent_article.thread_no
+    end
 
     respond_to do |format|
       if @article.save
-        format.html { redirect_to(@article, :notice => 'Article was successfully created.') }
+        format.html { redirect_to(board_article_path(@board, @article), :notice => 'Article was successfully created.') }
         format.xml  { render :xml => @article, :status => :created, :location => @article }
       else
         format.html { render :action => "new" }
@@ -60,7 +69,7 @@ class ArticlesController < ApplicationController
 
     respond_to do |format|
       if @article.update_attributes(params[:article])
-        format.html { redirect_to(@article, :notice => 'Article was successfully updated.') }
+        format.html { redirect_to(board_article_path(@board, @article), :notice => 'Article was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -76,8 +85,14 @@ class ArticlesController < ApplicationController
     @article.destroy
 
     respond_to do |format|
-      format.html { redirect_to(articles_url) }
+      format.html { redirect_to(board_path(@board)) }
       format.xml  { head :ok }
     end
+  end
+
+  private
+
+  def set_board
+    @board = Board.find(params[:board_id], :include => [:group, :articles])
   end
 end

@@ -2,7 +2,8 @@ class BoardsController < ApplicationController
   # GET /boards
   # GET /boards.xml
   def index
-    @boards = Board.all
+    @group = Group.find(params[:group_id])
+    @boards = @group.boards
 
     respond_to do |format|
       format.html # index.html.erb
@@ -24,8 +25,8 @@ class BoardsController < ApplicationController
   # GET /boards/new
   # GET /boards/new.xml
   def new
-    group = Group.find(params[:group_id])
-    @board = current_user.boards.new(:group => group)
+    @group = Group.find(params[:group_id])
+    @board = current_user.boards.new(:group => @group)
 
     respond_to do |format|
       format.html # new.html.erb

@@ -1,43 +1,13 @@
-<p id="notice"><%= notice %></p>
+<%= div_for(@article) do %>
+  <h1 class="title"><%= @article.title %></h1>
+  <div class="body"><%= @article.body %></div>
 
-<p>
-  <b>Board:</b>
-  <%= @article.board_id %>
-</p>
+  <ul class="buttons">
+    <li><%= link_to 'Reply' %></li>
+    <li><%= link_to 'Thread' %></li>
+    <li><%= link_to 'Edit', edit_board_article_path(@board, @article), :class => "button" %></li>
+    <li><%= link_to 'Delete', board_article_path(@board, @article), :confirm => 'Are you sure?', :method => :delete %></li>
+  </ul>
+<% end %>
 
-<p>
-  <b>Article no:</b>
-  <%= @article.article_no %>
-</p>
-
-<p>
-  <b>Parent no:</b>
-  <%= @article.parent_no %>
-</p>
-
-<p>
-  <b>Thread no:</b>
-  <%= @article.thread_no %>
-</p>
-
-<p>
-  <b>Name:</b>
-  <%= @article.name %>
-</p>
-
-<p>
-  <b>Hits count:</b>
-  <%= @article.hits_count %>
-</p>
-
-<p>
-  <b>Comments count:</b>
-  <%= @article.comments_count %>
-</p>
-
-<ul class="buttons">
-  <li><%= link_to 'Edit', edit_article_path(@article), :class => "button" %></li>
-  <li><%= link_to 'Back', articles_path, :class => "button" %></li>
-</ul>
-
-
+<%= articles(@board.articles)%>

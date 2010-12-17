@@ -8,8 +8,8 @@ class CreateArticles < ActiveRecord::Migration
       t.integer :thread_no
       t.string :title
       t.text :body
-      t.integer :hits_count
-      t.integer :comments_count
+      t.integer :hits_count, :default => 0
+      t.integer :comments_count, :default => 0
 
       t.timestamps
     end

@@ -2,5 +2,9 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Cancel', @group %>
-<%= link_to 'Groups', groups_path %>
+<ul class="buttons">
+  <li><%= link_to 'Cancel', @group, :class => "button" %></li>
+  <li><%= link_to 'Groups', groups_path, :class => "button" %></li>
+</ul>
+
+
