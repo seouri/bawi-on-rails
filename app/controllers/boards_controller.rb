@@ -25,7 +25,7 @@ class BoardsController < ApplicationController
   # GET /boards/new.xml
   def new
     group = Group.find(params[:group_id])
-    @board = group.boards.new
+    @board = current_user.boards.new(:group => group)
 
     respond_to do |format|
       format.html # new.html.erb
