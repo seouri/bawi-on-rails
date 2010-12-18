@@ -1,0 +1,5 @@
+<%= path(@board.group) %>
+<div class="articles">
+  <%= render :partial => "article", :collection => @articles %>  
+</div>
+<%= articles(@board.articles)%>

@@ -3,12 +3,7 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.xml
   def index
-    @articles = Article.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @articles }
-    end
+    redirect_to(board_path(@board))
   end
 
   # GET /articles/1
@@ -89,6 +84,15 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def thread
+    article = Article.find(params[:id])
+    @articles = @board.articles.where(:thread_no => article.thread_no)
+
+    respond_to do |format|
+      format.html
+      format.xml  { render :xml => @article }
+    end
+  end
   private
 
   def set_board

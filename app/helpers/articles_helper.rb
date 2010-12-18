@@ -2,7 +2,7 @@ module ArticlesHelper
   def articles(articles)
     li = []
     articles.each do |article|
-      article_no = link_to(article.article_no, board_article_path(@board, article), :class => "article_no")
+      article_no = link_to(article.article_no, thread_board_article_path(@board, article), :class => "article_no")
       title = link_to(article.title, board_article_path(@board, article), :class => "title")
       author = content_tag(:div, article.author.email, :class => "author")
       dateline = content_tag(:div, time_ago_in_words(article.created_at) + " ago", :class => "dateline")
