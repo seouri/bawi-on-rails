@@ -1,8 +1,9 @@
+<%= path(@board.group) %>
+
 <h1>Editing article</h1>
 
 <%= render 'form' %>
 
 <ul class="buttons">
   <li><%= link_to 'Cancel', board_article_path(@article.board, @article), :class => "button" %></li>
-  <li><%= link_to @article.board.name, board_path(@article.board), :class => "button" %></li>
 </ul>

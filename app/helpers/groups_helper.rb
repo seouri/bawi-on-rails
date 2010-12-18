@@ -10,8 +10,8 @@ module GroupsHelper
   def path(group)
     path = [link_to("Home", groups_path)]
     group.ancestors.each {|g| path.push(link_to(g.name, g))}
-    path.push(link_to(group.name, group))
-    path.push(link_to(@board.name, @board)) unless @board.nil?
+    path.push(link_to(group.name, group)) unless group.new_record?
+    path.push(link_to(@board.name, @board)) unless @board.nil? or @board.new_record?
     content_tag(:div, path.join(" &gt; ").html_safe, :id => "path")
   end
 end
