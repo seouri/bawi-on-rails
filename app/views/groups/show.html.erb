@@ -1,12 +1,15 @@
 <%= path(@group) %>
 
+<h1><%= @group.name %></h1>
+
 <%= groups(@group.children)%>
 <%= boards(@group.boards)%>
 
 <ul class="buttons">
-  <li><%= link_to 'New Group', new_group_path(:parent_id => @group.id), :class => "button" %></li>
+  <% if @group.user_id == current_user.id %>
   <li><%= link_to 'Edit', edit_group_path(@group), :class => "button" %></li>
-  <li><%= link_to 'Groups', groups_path, :class => "button" %></li>
+  <% end %>
+  <li><%= link_to 'New Group', new_group_path(:parent_id => @group.id), :class => "button" %></li>
   <li><%= link_to 'New Board', new_group_board_path(@group) %></li>
 </ul>
 

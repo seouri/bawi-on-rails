@@ -3,11 +3,3 @@
 <h1><%= @board.name %></h1>
 
 <%= articles(@board.articles)%>
-
-<ul class="buttons">
-  <% if @board.user_id == current_user.id %>
-  <li><%= link_to 'Edit', edit_board_path(@board), :class => "button" %></li>
-  <% end %>
-  <li><%= link_to 'Write', new_board_article_path(@board), :class => "button" %></li>
-  <li><%= link_to 'Back', group_path(@board.group), :class => "button" %></li>
-</ul>
