@@ -97,5 +97,6 @@ class ArticlesController < ApplicationController
 
   def set_board
     @board = Board.find(params[:board_id], :include => [:group, :articles])
+    @article_list = @board.articles.paginate(:page => params[:page], :per_page => 5, :order => "id desc")
   end
 end
