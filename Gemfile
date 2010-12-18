@@ -8,3 +8,5 @@ gem 'devise'
 gem 'cancan'
 gem 'friendly_id'
 gem 'paperclip'
+
+gem 'random_data'
