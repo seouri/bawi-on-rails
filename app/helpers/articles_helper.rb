@@ -9,7 +9,7 @@ module ArticlesHelper
       hits = content_tag(:div, article.hits_count, :class => "hits_count")
       li.push(content_tag(:li, article_no + title + author + dateline + hits, :id => dom_id(article), :class => dom_class(article)))
     end
-    article_list = content_tag(:ul, li.join("\n").html_safe, :id => "articles")
+    article_list = content_tag(:ul, li.join("\n").html_safe, :id => "article_list")
     article_list + bottom_control
   end
 
