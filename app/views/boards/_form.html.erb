@@ -1,4 +1,4 @@
-<%= form_for(@board) do |f| %>
+<%= form_for([@group, @board]) do |f| %>
   <%= f.hidden_field :group_id %>
   <%= f.hidden_field :user_id %>
   <% if @board.errors.any? %>

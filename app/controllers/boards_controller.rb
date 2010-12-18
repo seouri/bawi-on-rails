@@ -42,6 +42,7 @@ class BoardsController < ApplicationController
   # POST /boards
   # POST /boards.xml
   def create
+    @group = Group.find(params[:group_id])
     @board = Board.new(params[:board])
 
     respond_to do |format|

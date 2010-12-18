@@ -1,2 +1,2 @@
-u = User.new(:email => "admin", :password => "choochoo")
+u = User.new(:email => "admin@a.com", :password => "choochoo")
 u.save(false) # bypass validation
