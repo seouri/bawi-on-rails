@@ -8,8 +8,10 @@ module GroupsHelper
   end
 
   def path(group)
-    path = group.ancestors.map {|g| link_to(g.name, g)}
+    path = [link_to("Home", groups_path)]
+    group.ancestors.each {|g| path.push(link_to(g.name, g))}
     path.push(link_to(group.name, group))
+    path.push(link_to(@board.name, @board)) unless @board.nil?
     content_tag(:div, path.join(" &gt; ").html_safe, :id => "path")
   end
 end
