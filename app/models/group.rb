@@ -1,6 +1,6 @@
 class Group < ActiveRecord::Base
   has_many :boards
-  belongs_to :owner, :class_name => "User", :counter_cache => true
+  belongs_to :owner, :class_name => "User", :foreign_key => :user_id, :counter_cache => true
   belongs_to :parent, :class_name => "Group", :foreign_key => :parent_id, :counter_cache => :children_count
   has_many :children, :class_name => "Group", :foreign_key => :parent_id, :order => "name"
 

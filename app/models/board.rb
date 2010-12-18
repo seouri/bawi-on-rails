@@ -1,7 +1,7 @@
 class Board < ActiveRecord::Base
   belongs_to :group, :counter_cache => true
-  has_many :articles
-  belongs_to :owner, :class_name => "User", :counter_cache => true
+  has_many :articles, :include => :owner
+  belongs_to :owner, :class_name => "User", :foreign_key => :user_id, :counter_cache => true
 
   validates_presence_of :group, :user_id, :keyword
   validates_associated :group, :owner
