@@ -11,9 +11,11 @@ class Article < ActiveRecord::Base
   validates_length_of :title, :in => 1..255
   validates_length_of :body, :minimum => 1
 
-  attr_accessible :title, :body
+  attr_accessible :board_id, :title, :body
+
   private
   def set_numbers
+    self.article_no = self.board.max_article_no + 1
     self.parent_no = self.article_no if self.parent_no.blank?
     self.thread_no = self.article_no if self.thread_no.blank?
   end

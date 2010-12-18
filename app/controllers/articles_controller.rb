@@ -45,7 +45,6 @@ class ArticlesController < ApplicationController
     parent_article = Article.find(params[:article_id]) if params[:article_id].present?
     @article = @board.articles.new(params[:article])
     @article.user_id = current_user
-    @article.article_no = @board.max_article_no + 1
     if parent_article
       @article.parent_no = parent_article.article_no
       @article.thread_no = parent_article.thread_no
