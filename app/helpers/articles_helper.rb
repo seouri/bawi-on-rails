@@ -15,8 +15,8 @@ module ArticlesHelper
 
   def bottom_control
     li = []
-    li.push(link_to('Settings', edit_board_path(@board), :class => "button")) if @board.user_id == current_user.id
-    li.push(link_to('Write', new_board_article_path(@board), :class => "button" ))
+    li.push(content_tag(:li, link_to('Settings', edit_board_path(@board), :class => "button"))) if @board.user_id == current_user.id
+    li.push(content_tag(:li, link_to('Write', new_board_article_path(@board), :class => "button" )))
     content_tag(:ul, li.join("\n").html_safe, :class => "buttons")
   end
 end
