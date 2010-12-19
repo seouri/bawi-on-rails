@@ -94,6 +94,7 @@ class ArticlesController < ApplicationController
   def thread
     article = Article.find(params[:id])
     @articles = @board.articles.where(:thread_no => article.thread_no)
+    @articles.each {|a| a.increment!(:hits_count) unless a.user_id == current_user.id}
 
     respond_to do |format|
       format.html
