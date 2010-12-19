@@ -32,7 +32,7 @@ class ArticlesController < ApplicationController
   def reply
     parent_article = Article.find(params[:id])
     title = ("Re: " + parent_article.title).gsub(/^(Re: )+/, "Re: ")
-    body = parent_article.body.split(/\n/).map {|line| "> " + line}.join("\n")
+    body = "\n\n\n\n" + parent_article.author.email + " wrote: " + parent_article.body.split(/\n/).map {|line| "> " + line}.join("\n")
     @article = @board.articles.new(:parent_no => parent_article.article_no, :thread_no => parent_article.thread_no, :title => title, :body => body)
 
     respond_to do |format|
