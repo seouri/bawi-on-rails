@@ -4,7 +4,10 @@ BawiOnRails::Application.routes.draw do
   end
   resources :boards do
     resources :articles do
-      get 'thread', :on => :member
+      member do
+        get :thread
+        get :reply
+      end
     end
   end
   devise_for :users

@@ -11,7 +11,7 @@ class Article < ActiveRecord::Base
   validates_length_of :title, :in => 1..255
   validates_length_of :body, :minimum => 1
 
-  attr_accessible :board_id, :title, :body
+  attr_accessible :board_id, :title, :body, :parent_no, :thread_no
 
   private
   def set_numbers

@@ -29,6 +29,18 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def reply
+    parent_article = Article.find(params[:id])
+    title = ("Re: " + parent_article.title).gsub(/^(Re: )+/, "Re: ")
+    body = parent_article.body.split(/\n/).map {|line| "> " + line}.join("\n")
+    @article = @board.articles.new(:parent_no => parent_article.article_no, :thread_no => parent_article.thread_no, :title => title, :body => body)
+
+    respond_to do |format|
+      format.html { render :action => "new" }
+      format.xml  { render :xml => @article }
+    end
+  end
+
   # GET /articles/1/edit
   def edit
     @article = Article.find(params[:id])
@@ -37,13 +49,8 @@ class ArticlesController < ApplicationController
   # POST /articles
   # POST /articles.xml
   def create
-    parent_article = Article.find(params[:article_id]) if params[:article_id].present?
     @article = @board.articles.new(params[:article])
     @article.user_id = current_user
-    if parent_article
-      @article.parent_no = parent_article.article_no
-      @article.thread_no = parent_article.thread_no
-    end
 
     respond_to do |format|
       if @article.save
@@ -93,6 +100,7 @@ class ArticlesController < ApplicationController
       format.xml  { render :xml => @article }
     end
   end
+
   private
 
   def set_board

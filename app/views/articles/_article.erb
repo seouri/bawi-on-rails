@@ -5,7 +5,7 @@
   <div class="stats"><div class="comments_count" id="<%= dom_id(article)%>-comments_count"><%= pluralize(article.comments_count, "comment") %></div><div class="hits_count" id="<%= dom_id(article)%>-hits_count"><%= pluralize(article.comments_count, "hit") %></div></div>
   <div class="body"><%= article.body %></div>
   <ul class="buttons">
-    <li><%= link_to 'Reply' %></li>
+    <li><%= link_to 'Reply', reply_board_article_path(@board, article) %></li>
     <li><%= link_to 'Thread', thread_board_article_path(@board, article) %></li>
     <% if article.user_id == current_user.id %>
     <li><%= link_to 'Edit', edit_board_article_path(@board, article), :class => "button" %></li>
