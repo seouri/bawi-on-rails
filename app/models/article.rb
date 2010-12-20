@@ -1,5 +1,6 @@
 class Article < ActiveRecord::Base
   before_validation :set_numbers
+  before_save :remove_white_space
   after_create :update_board
   belongs_to :board, :counter_cache => true
   has_many :comments
@@ -22,5 +23,9 @@ class Article < ActiveRecord::Base
 
   def update_board
     Board.find(self.board_id).update_max_article_no
+  end
+
+  def remove_white_space
+    self.title = self.title.strip
   end
 end

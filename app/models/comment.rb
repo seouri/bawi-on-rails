@@ -1,5 +1,6 @@
 class Comment < ActiveRecord::Base
   before_validation :set_numbers
+  before_save :remove_white_space
   after_create :update_board
   after_destroy :update_board
 
@@ -19,5 +20,9 @@ class Comment < ActiveRecord::Base
 
   def update_board
     Board.find(self.board_id).update_max_comment_no
+  end
+
+  def remove_white_space
+    self.body = self.body.strip
   end
 end

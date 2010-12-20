@@ -1,4 +1,6 @@
 class Board < ActiveRecord::Base
+  before_save :remove_white_space
+
   belongs_to :group, :counter_cache => true
   has_many :articles, :include => :author
   belongs_to :owner, :class_name => "User", :foreign_key => :user_id, :counter_cache => true
@@ -19,5 +21,11 @@ class Board < ActiveRecord::Base
   def update_max_comment_no
     self.max_comment_no = Comment.maximum(:comment_no, :conditions => "board_id = #{self.id}")
     self.save
+  end
+
+  private
+  
+  def remove_white_space
+    self.name = self.name.strip
   end
 end

@@ -1,4 +1,5 @@
 class Group < ActiveRecord::Base
+  before_save :remove_white_space
   has_many :boards
   belongs_to :owner, :class_name => "User", :foreign_key => :user_id, :counter_cache => true
   belongs_to :parent, :class_name => "Group", :foreign_key => :parent_id, :counter_cache => :children_count
@@ -19,5 +20,11 @@ class Group < ActiveRecord::Base
     ancestor = []
     ancestor.push(self.parent, self.parent.ancestors) unless self.parent.nil?
     ancestor.reverse.flatten
+  end
+
+  private
+  
+  def remove_white_space
+    self.name = self.name.strip
   end
 end
