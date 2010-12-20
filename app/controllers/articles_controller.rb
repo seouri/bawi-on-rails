@@ -9,7 +9,7 @@ class ArticlesController < ApplicationController
   # GET /articles/1
   # GET /articles/1.xml
   def show
-    @article = Article.find(params[:id])
+    @article = Article.find(params[:id], :include => [[:comments => :author], :author])
     @article.increment!(:hits_count) unless @article.user_id == current_user.id
 
     respond_to do |format|
@@ -83,7 +83,7 @@ class ArticlesController < ApplicationController
   # DELETE /articles/1.xml
   def destroy
     @article = Article.find(params[:id])
-    @article.destroy
+    @article.destroy if @article.user_id = current_user.id
 
     respond_to do |format|
       format.html { redirect_to(board_path(@board)) }
@@ -93,7 +93,7 @@ class ArticlesController < ApplicationController
 
   def thread
     article = Article.find(params[:id])
-    @articles = @board.articles.where(:thread_no => article.thread_no)
+    @articles = @board.articles.where(:thread_no => article.thread_no).includes(:comments => :author)
     @articles.each {|a| a.increment!(:hits_count) unless a.user_id == current_user.id}
 
     respond_to do |format|
@@ -106,6 +106,6 @@ class ArticlesController < ApplicationController
 
   def set_board
     @board = Board.find(params[:board_id], :include => [:group, :articles])
-    @article_list = @board.articles.paginate(:page => params[:page], :per_page => 5, :order => "id desc")
+    @article_list = @board.articles.paginate(:page => params[:page], :total_entries => @board.articles_count, :per_page => 5, :order => "id desc")
   end
 end

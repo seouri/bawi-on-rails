@@ -1,0 +1,7 @@
+<li id="<%= dom_id(comment) %>">
+  <div class="comment_no">#<%= comment.comment_no %></div>
+  <div class="author"><%= comment.author.email %></div>
+  <div class="body"><%= comment.body %></div>
+  <div class="dateline"><%= time_ago_in_words(comment.created_at) %> ago</div>
+  <div class="delete"><%= link_to 'Delete', board_article_comment_path(@board, comment.article, comment), :confirm => 'Are you sure?', :method => :delete %></div>
+</li>

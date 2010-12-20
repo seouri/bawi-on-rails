@@ -15,4 +15,9 @@ class Board < ActiveRecord::Base
     self.max_article_no = Article.maximum(:article_no, :conditions => "board_id = #{self.id}")
     self.save
   end
+
+  def update_max_comment_no
+    self.max_comment_no = Comment.maximum(:comment_no, :conditions => "board_id = #{self.id}")
+    self.save
+  end
 end

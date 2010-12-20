@@ -8,6 +8,7 @@ BawiOnRails::Application.routes.draw do
         get :thread
         get :reply
       end
+      resources :comments
     end
   end
   devise_for :users

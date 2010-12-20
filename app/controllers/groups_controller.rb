@@ -73,7 +73,7 @@ class GroupsController < ApplicationController
   # DELETE /groups/1.xml
   def destroy
     @group = Group.find(params[:id])
-    @group.destroy
+    @group.destroy if @group.user_id == current_user.id
 
     respond_to do |format|
       format.html { redirect_to(groups_url) }

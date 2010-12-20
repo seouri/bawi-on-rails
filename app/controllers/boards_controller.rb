@@ -77,7 +77,7 @@ class BoardsController < ApplicationController
   # DELETE /boards/1.xml
   def destroy
     @board = Board.find(params[:id])
-    @board.destroy
+    @board.destroy if @board.user_id = current_user.id
 
     respond_to do |format|
       format.html { redirect_to(boards_url) }

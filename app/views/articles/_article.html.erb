@@ -12,4 +12,15 @@
     <li><%= link_to 'Delete', board_article_path(@board, article), :confirm => 'Are you sure?', :method => :delete %></li>
     <% end %>
   </ul>
+  <ul id="<%= dom_id(article) %>-comments" class="comments">
+    <%= render :partial => "comment", :collection => article.comments %>
+    <li>
+      <div class="author">comment</div>
+      <div class="body">
+        <%= form_for([@board, article, article.comments.new]) do |cf| %>
+          <%= cf.text_field :body %>
+        <% end %>
+      </div>
+    </li>
+  </ul>
 <% end %>
